@@ -102,10 +102,12 @@ Description=Heminetwork Wallet $wallet_num Mining Service
 After=network.target
 
 [Service]
-Type=simple
-Environment=\"POPM_BFG_REQUEST_TIMEOUT=60s\"
-ExecStart=/usr/bin/env bash -c '$(pwd)/popmd --wallet $priv_key --fee $static_fee'
 WorkingDirectory=$HOME/.heminetwork
+ExecStart=$(pwd)/popmd --wallet $priv_key --fee $static_fee
+Environment=\"POPM_BFG_REQUEST_TIMEOUT=60s\"
+Environment=\"POPM_BTC_PRIVKEY=$priv_key\"
+Environment=\"POPM_STATIC_FEE=$static_fee\"
+Environment=\"POPM_BFG_URL=wss://testnet.rpc.hemi.network/v1/ws/public\"
 Restart=on-failure
 RestartSec=3
 
@@ -168,5 +170,3 @@ done
 
 show "PoP mining successfully started for $wallet_count wallet(s)"
 show "You can check the logs for each wallet in the $LOG_DIR directory"
-show "Running: $(pwd)/popmd --wallet $priv_key --fee $static_fee"
-
