@@ -102,14 +102,15 @@ Description=Heminetwork Wallet $wallet_num Mining Service
 After=network.target
 
 [Service]
-WorkingDirectory=$HOME/.heminetwork
-ExecStart=$(pwd)/popmd --wallet $priv_key --fee $static_fee
-Environment=\"POPM_BFG_REQUEST_TIMEOUT=60s\"
-Environment=\"POPM_BTC_PRIVKEY=$priv_key\"
-Environment=\"POPM_STATIC_FEE=$static_fee\"
-Environment=\"POPM_BFG_URL=wss://testnet.rpc.hemi.network/v1/ws/public\"
+WorkingDirectory=$(pwd)
+ExecStart=$(pwd)/popmd
+Environment="POPM_BFG_REQUEST_TIMEOUT=60s"
+Environment="POPM_BTC_PRIVKEY=$priv_key"
+Environment="POPM_STATIC_FEE=$static_fee"
+Environment="POPM_BFG_URL=wss://testnet.rpc.hemi.network/v1/ws/public"
 Restart=on-failure
-RestartSec=3
+StandardOutput=append:$log_file
+StandardError=append:$log_file
 
 [Install]
 WantedBy=multi-user.target
