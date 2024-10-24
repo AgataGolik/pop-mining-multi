@@ -68,3 +68,4 @@ fetch_and_update_fee() {
 fetch_and_update_fee &
 
 show "Fee updater for all wallets started in background using screen."
+
