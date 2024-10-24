@@ -17,6 +17,7 @@ restart_service() {
         else
             attempts=$((attempts + 1))
             show "Failed to restart $service_name (Attempt $attempts/$max_attempts). Retrying in 15 seconds..."
+
             sleep 15
         fi
     done
