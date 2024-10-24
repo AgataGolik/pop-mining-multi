@@ -30,7 +30,7 @@ fetch_and_update_fee() {
     local service_prefix=\"heminetwork_wallet_\"
     
     while true; do
-        raw_fee=\$(curl -sSL \"https://mempool.space/testnet/api/v1/fees/mempool-blocks\" | jq '.[0].medianFee')
+        raw_fee=$(curl -sSL "https://mempool.space/testnet/api/v1/fees/mempool-blocks" | jq '.[0].medianFee')
 
         if [[ ! -z \"\$raw_fee\" ]]; then
             static_fee=\$(printf \"%.0f\" \"\$raw_fee\")
