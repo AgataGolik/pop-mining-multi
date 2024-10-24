@@ -1,16 +1,5 @@
 #!/bin/bash
 
-# Instalacja wymaganych pakietów
-sudo apt-get update && sudo apt-get install -y --no-install-recommends screen curl jq || { echo "Installation failed"; exit 1; }
-
-# Sprawdzenie, czy istnieje aktywna sesja screen i jej zamknięcie
-screen -X -S hemi-fee-updater quit
-
-# Uruchomienie nowej sesji screen
-screen -S hemi-fee-updater -dm bash -c "
-
-#!/bin/bash
-
 show() {
     echo -e \"\033[1;35m\$1\033[0m\"
 }
